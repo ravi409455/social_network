@@ -3,12 +3,20 @@ from .models import User, FriendRequest
 
 
 class UserSerializer(serializers.ModelSerializer):
+    """
+    Serializer for User model.
+    """
+
     class Meta:
         model = User
         fields = ["id", "username", "email"]
 
 
 class FriendRequestSerializer(serializers.ModelSerializer):
+    """
+    Serializer for FriendRequest model.
+    """
+
     from_user = serializers.StringRelatedField()
     to_user = serializers.StringRelatedField()
 
@@ -18,6 +26,10 @@ class FriendRequestSerializer(serializers.ModelSerializer):
 
 
 class LoginSerializer(serializers.Serializer):
+    """
+    Use this serializer to validate user login credentials.
+    """
+
     username = serializers.CharField()
     password = serializers.CharField()
 
@@ -32,6 +44,10 @@ class LoginSerializer(serializers.Serializer):
 
 
 class SignupSerializer(serializers.Serializer):
+    """
+    Use this serializer to validate user signup data.
+    """
+
     username = serializers.CharField(max_length=150)
     email = serializers.EmailField()
     password = serializers.CharField()

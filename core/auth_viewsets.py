@@ -5,12 +5,15 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.authentication import BasicAuthentication
 from rest_framework.decorators import action
 from django.contrib.auth import login, authenticate, logout
-from django.views.decorators.csrf import csrf_exempt
 from .models import User as User
 from .serializers import LoginSerializer, SignupSerializer
 
 
 class UserAuthViewSet(ViewSet):
+    """
+    Viewset to handle user authentication related APIS
+    """
+
     permission_classes = [AllowAny]
     authentication_classes = []
 

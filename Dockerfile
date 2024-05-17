@@ -1,19 +1,16 @@
 FROM python:3.9
 
-# set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
-
 COPY requirements.txt .
 
-# install python dependencies
+# Install python dependencies
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Copy code content
 COPY . .
 
-# running migrations
+# Run migratiosn
 RUN python manage.py migrate
 
-# gunicorn
+# Start the server
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
